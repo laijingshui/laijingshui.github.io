@@ -287,6 +287,37 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canv
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  290
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  1
+                </span>
+              
+            </div>
+          
 
           
 
@@ -305,7 +336,7 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canv
       
         
           
-            <h1 id="自动化部署总结"><a href="#自动化部署总结" class="headerlink" title="自动化部署总结"></a>自动化部署总结</h1><h2 id="1-基础软件安装"><a href="#1-基础软件安装" class="headerlink" title="1.基础软件安装"></a>1.基础软件安装</h2><h3 id="1-1docker安装"><a href="#1-1docker安装" class="headerlink" title="1.1docker安装"></a>1.1docker安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">(1)安装：</span><br><span class="line">重装:yum remove docker docker-common docker-selinux docker-engine</span><br><span class="line">删除: docker镜像sudu yum remove docker-ce</span><br><span class="line">docker容器:sudo rm -rf /var/ib/docker</span><br><span class="line"><span class="meta">#</span><span class="bash">建立docker用户,只有root和docker组用户才可以访问docker引擎得socket</span></span><br><span class="line">sudo groupadd docker			#建立docker组</span><br><span class="line">sudo usermod -aG docker $USER	#将当前用户加入到docker组</span><br><span class="line">安装：</span><br><span class="line">yum provides '*/applydeltarpm'  </span><br><span class="line">yum install deltarpm -y</span><br><span class="line">curl -fsSL https://get.docker.com -o get-docker.sh</span><br><span class="line">sudo sh get-docker.sh --mirror Aliyun</span><br><span class="line">sudo systemctl enable docker</span><br><span class="line">(2)采用阿里云docker镜像加速(进入阿里云控制台搜索容器镜像服务加速器)</span><br><span class="line">sudo mkdir -p /etc/docker</span><br><span class="line"><span class="meta">#</span><span class="bash">可以使用网易得</span></span><br><span class="line">sudo tee /etc/docker/daemon.json &lt;&lt;-'EOF'</span><br><span class="line">&#123;</span><br><span class="line">  "registry-mirrors": ["http://hub-mirror.c.163.com"]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line">sudo systemctl restart daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
+            <h2 id="1-基础软件安装"><a href="#1-基础软件安装" class="headerlink" title="1.基础软件安装"></a>1.基础软件安装</h2><h3 id="1-1docker安装"><a href="#1-1docker安装" class="headerlink" title="1.1docker安装"></a>1.1docker安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">(1)安装：</span><br><span class="line">重装:yum remove docker docker-common docker-selinux docker-engine</span><br><span class="line">删除: docker镜像sudu yum remove docker-ce</span><br><span class="line">docker容器:sudo rm -rf /var/ib/docker</span><br><span class="line"><span class="meta">#</span><span class="bash">建立docker用户,只有root和docker组用户才可以访问docker引擎得socket</span></span><br><span class="line">sudo groupadd docker			#建立docker组</span><br><span class="line">sudo usermod -aG docker $USER	#将当前用户加入到docker组</span><br><span class="line">安装：</span><br><span class="line">yum provides '*/applydeltarpm'  </span><br><span class="line">yum install deltarpm -y</span><br><span class="line">curl -fsSL https://get.docker.com -o get-docker.sh</span><br><span class="line">sudo sh get-docker.sh --mirror Aliyun</span><br><span class="line">sudo systemctl enable docker</span><br><span class="line">(2)采用阿里云docker镜像加速(进入阿里云控制台搜索容器镜像服务加速器)</span><br><span class="line">sudo mkdir -p /etc/docker</span><br><span class="line"><span class="meta">#</span><span class="bash">可以使用网易得</span></span><br><span class="line">sudo tee /etc/docker/daemon.json &lt;&lt;-'EOF'</span><br><span class="line">&#123;</span><br><span class="line">  "registry-mirrors": ["http://hub-mirror.c.163.com"]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line">sudo systemctl restart daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
 
 <h3 id="1-2安装gitlab"><a href="#1-2安装gitlab" class="headerlink" title="1.2安装gitlab"></a>1.2安装gitlab</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run --detach \</span><br><span class="line">  --hostname gitlab.lailai.com \</span><br><span class="line">  --publish 443:443 --publish 80:80 --publish 13800:22 \</span><br><span class="line">  --name gitlab \</span><br><span class="line">  --restart always \</span><br><span class="line">  --volume /srv/gitlab/config:/etc/gitlab \</span><br><span class="line">  --volume /srv/gitlab/logs:/var/log/gitlab \</span><br><span class="line">  --volume /srv/gitlab/data:/var/opt/gitlab \</span><br><span class="line">  gitlab/gitlab-ce:latest</span><br><span class="line"><span class="meta">  #</span><span class="bash">若没有关闭防火墙，那么需要开放13800端口</span></span><br><span class="line">  firewall-cmd --add-port=13800/tcp --permanent</span><br><span class="line"><span class="meta">  #</span><span class="bash">这里注意free -h查看可用内存大小，2G不够就来3G，若出现502，但是发现内存足够，ctrl+F5刷新几次就好了</span></span><br></pre></td></tr></table></figure>
 
@@ -317,7 +348,9 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canv
     
     
     
-
+	<div>
+	  
+	</div>
     
 
     
@@ -410,6 +443,37 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canv
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  144
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  1
+                </span>
+              
+            </div>
+          
 
           
 
@@ -446,7 +510,9 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canv
     
     
     
-
+	<div>
+	  
+	</div>
     
 
     
@@ -567,7 +633,8 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canv
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -575,7 +642,11 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canv
 
   
 </div>
-
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>	
 
   <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
@@ -589,7 +660,10 @@ color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canv
 
 
 
-
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共434字</span>
+</div>
         
 
 
